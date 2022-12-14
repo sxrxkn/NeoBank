@@ -1,0 +1,555 @@
+:root {
+    --main-black:  #1C1C1E;
+    --spare-black: #1C1C1C;
+  }
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url(./assets/fonts/ubuntu/Ubuntu-Light.woff2),
+    url(./assets/fonts/ubuntu/Ubuntu-Light.woff);
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url(./assets/fonts/ubuntu/Ubuntu-Regular.woff2),
+    url(./assets/fonts/ubuntu/Ubuntu-Regular.woff);
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url(./assets/fonts/ubuntu/Ubuntu-Medium.woff2),
+    url(./assets/fonts/ubuntu/Ubuntu-Medium.woff);
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: url(./assets/fonts/rubik/Rubik-Light.woff2),
+    url(./assets/fonts/ubuntu/Ubuntu-Light.woff);
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: url(./assets/fonts/rubik/Rubik-Medium.woff2),
+    url(./assets/fonts/ubuntu/Ubuntu-Medium.woff);
+    font-weight: 300;
+    font-display: swap;
+    font-style: normal;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    color: var(--main-black);
+    background-color: #F5F4FF;
+}
+
+.header {
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 86%;
+    margin: 0 auto;
+    height: 64px;
+}
+
+.header__name {
+    font-weight: 700;
+    font-size: 24px;
+    color: #B4387A;
+}
+
+.header__ul {
+    display: flex;
+    justify-content: space-between;
+    color: #1D1929;
+    gap: 50px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    width: 128px;
+    height: 50px;
+    background: #003CFF;
+}
+
+.button a {
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+main {
+    width: 86%;
+    margin: 0 auto;
+}
+
+.card-design {
+  margin-top: 140px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.card-design__left-block {
+    width: 624px;
+}
+
+.card-design__left-block__h {
+    padding-bottom: 36px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 50px;
+}
+
+.card-design__right-block {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 516px;
+}
+
+.card-design__right-block img{
+    width: 250px;
+    height: 148px;
+}
+
+.features {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 100px;
+    display: flex;
+    color: #4F5665;
+    justify-content: space-between;
+    gap: 80px;
+    align-items: center;
+}
+
+.features_description__h {
+    padding-bottom: 20px;
+    font-weight: 500;
+    
+    font-size: 35px;
+    color: #0B132A;
+}
+
+.features_description__p {
+    padding-bottom: 25px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+.features_description__list li {
+    padding-left: 18px;
+    padding-bottom: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    list-style-image: url('./assets/imgs/select.svg')
+}
+
+.features_description__list li p {
+    transform: translateY(-7px);
+}
+
+.exchange-rate {
+    display: flex;
+    justify-content: space-between;
+    height: 366px;
+    background: linear-gradient(358.2deg, rgba(178, 178, 178, 0.8) 8.06%, rgba(178, 178, 178, 0) 67.93%), rgba(244, 244, 244, 0.9);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(187, 187, 187, 0.2);
+    border-radius: 28px;
+    margin-top: 48px;
+    padding-top: 32px;
+}
+
+.exchange-rate__left-block {
+    padding-left: 32px;
+}
+
+.exchange-rate__left-block__h {
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.exchange-rate__left-block__p {
+    font-weight: 500;
+    font-size: 20px;
+    padding-top: 30px;
+}
+
+
+.exchange-rate__left-block__dl {
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    width: 440px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.exchange-rate__left-block__dl dt {
+    padding-right: 32px;
+    padding-bottom: 32px;
+    color: #808080;
+    font-size: 20px;
+}
+
+.exchange-rate__left-block__dl dd{
+    padding-right: 20px;
+    font-size: 20px;
+    color: #000000;
+}
+
+.exchange-rate__left-block__a {
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.exchange-rate__right-block {
+    padding-right: 32px;
+}
+
+
+.exchange-rate__right-block__img {
+    display: flex;
+    justify-content: end;
+}
+
+.exchange-rate__right-block__p {
+    padding-bottom: 86px;
+}
+
+.map {
+    margin-top: 48px;
+    text-align: center;
+}
+
+.map-h {
+    padding-bottom: 20px;
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--spare-black);
+}
+
+.map-h3 {
+    font-weight: 500;
+    font-size: 16px;
+    padding-bottom: 48px;
+    color: var(--main-black);
+}
+
+.footer {
+    margin-top: 48px;
+    height: 462px;
+    background: linear-gradient(0deg, rgba(178, 178, 178, 0.2), rgba(178, 178, 178, 0.2)), #F4F4F4;
+}
+
+.container {
+    width: 86%;
+    margin: 0 auto;
+}
+
+.footer__flex-block {
+    padding-top: 96px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__flex-block__logo {
+    width: 158px;
+    height: 60px;
+}
+
+.footer__flex-block__number {
+    padding-bottom: 12px;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.footer__flex-block__mail {
+    color: #2D3748;
+    font-weight: 500;
+}
+
+.footer__ul {
+    font-weight: 500;
+    padding-top: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 28px;
+}
+
+.footer__ul li {
+    padding-right: 32px;
+    padding-bottom: 10px;
+}
+
+.footer hr {
+    background-color: white;
+    border: 2px solid white;
+}
+
+.footer__p {
+    padding-top: 32px;
+}
+
+@media (max-width: 1300px) {
+    .header {
+        width: 920px;
+    }
+
+    main {
+        width: 920px;
+    }
+
+    .card-design__left-block {
+        width: 340px;
+    }
+
+    .map img {
+        width: 920px;
+        height: auto;
+    }
+
+    .container {
+        width: 920px;
+    }
+}
+
+@media (max-width: 920px) {
+    .header {
+        width: 96%;
+    }
+
+    .header__ul {
+        gap: 20px;
+    }
+
+    .card-design__left-block {
+        width: 300px;
+    }
+
+    .card-design__right-block {
+        height: auto;
+    }
+
+    main {
+        width: 96%;
+    }
+
+    .card-design__left-block__h {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .card-design__right-block img{
+        width: 180px;
+        height: auto;
+    }
+
+    .features__img img{
+        width: 300px;
+        height: auto;
+    }
+
+    .features_description__h {
+        font-size: 24px;
+    }
+
+    .exchange-rate__left-block__h {
+        font-size: 24px;
+    }
+
+    .map img {
+        width: 500px;
+        height: auto;
+    }
+
+    .map-h {
+        font-size: 24px;
+    }
+
+    .footer {
+        height: 400px;
+    }
+
+    .footer__flex-block {
+        padding-top: 50px;
+    }
+
+    .container {
+        width: 96%;
+    }
+
+    .footer__flex-block__number {
+        font-size: 24px;
+    }
+
+    .footer__flex-block__logo {
+        width: 130px;
+        height: auto;
+    }
+
+    .footer__p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 640px) {
+    .header__ul {
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+        gap: 5px;
+    }
+
+    .header {
+        height: 100%;
+    }
+
+    .exchange-rate__right-block__img img {
+        display: none;
+    }
+
+    .card-design__right-block  {
+        width: 100%;
+        position: relative;
+        justify-content: center;
+    }
+
+    .card-design__left-block {
+        width: 200px;
+    }
+
+    .card-design__left-block__h {
+        text-align: center;
+    }
+
+    .card-design {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .card-design__button {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: -70px;
+        margin: 0 auto;
+    }
+
+ 
+    .exchange-rate {
+        height: 100%;
+        position: relative;
+    }
+
+    .exchange-rate__right-block__p {
+        position: absolute;
+        top: 84px;
+        width: 30vw;
+        height: 100%;
+        left: 150px;
+    }
+
+    .exchange-rate__left-block__dl {
+        width: 80%;
+    }
+}
+
+@media (max-width: 500px) {
+    .header {
+        width: 96%;
+    }
+    
+    main {
+        width: 96%;
+    }
+
+    .map img {
+        width: 80%;
+        height: auto;
+    }
+
+    .features__img {
+        display: none;
+    }
+
+    .card-design__left-block__h {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .exchange-rate__left-block__h {
+        font-size: 20px;
+    }
+
+    .features_description__h {
+        font-size: 20px;
+    }
+
+    .features_description__list {
+        padding-left: 30px;
+    }
+
+    .exchange-rate__right-block__p {
+        display: none;
+    }
+
+    .exchange-rate__right-block__img {
+        display: none;
+    }
+
+    .container {
+        width: 96%;
+    }
+
+    .footer {
+        height: 100%;
+    }
+
+    .footer__flex-block__number {
+        font-size: 18px;
+    }
+
+    .footer__flex-block__logo {
+        width: 100px;
+        height: auto;
+    }
+    
+    .footer__p {
+        font-size: 12px;
+    }
+}
