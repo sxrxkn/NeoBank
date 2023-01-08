@@ -57,8 +57,11 @@ ul {
     list-style: none;
 }
 
+a:active,
+a:hover,  
 a {
-    text-decoration: none;
+  text-decoration: none;
+  color: var(--main-black);
 }
 
 body {
@@ -211,7 +214,7 @@ main {
     font-weight: 700;
     padding-top: 50px;
     padding-bottom: 30px;
-    width: 440px;
+    width: 450px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -249,7 +252,7 @@ main {
 }
 
 .map {
-    margin-top: 48px;
+    margin: 48px 0;
     text-align: center;
 }
 
@@ -265,6 +268,97 @@ main {
     font-size: 16px;
     padding-bottom: 48px;
     color: var(--main-black);
+}
+
+.news {
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.news__header {
+    padding-bottom: 20px;
+}
+
+.news__info {
+    padding-bottom: 46px;
+}
+
+.news__slider {
+    display: flex;
+    gap: 80px;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 46px;
+    transition: all ease 1s;
+}
+
+.news__slider__slide {
+    width: 320px;
+    height: 448px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+}
+
+.news__slider__slide__header {
+    width: 256px;
+    padding-bottom: 32px;
+}
+
+.news__slider__slide__img {
+    width: 256px;
+    height: 120px;
+    padding-bottom: 32px;
+}
+
+.news__slider__slide__description {
+    width: 256px;
+    height: 104px;
+    padding-bottom: 46px;
+}
+
+.news__slider__slide__link:hover {
+    transform: scale(1.2)
+}
+
+.news__buttons {
+    text-align: end;
+}
+
+.news__buttons button:disabled {
+    background-color: gray;
+    border-color: grey;
+    cursor: not-allowed
+}
+
+.news__buttons__left-button {
+    width: 64px;
+    height: 64px;
+    background: #FFFFFF;
+    cursor: pointer;
+    border: 1px solid #003CFF;
+    border-radius: 50px;
+    background-image: url(./assets/imgs/left_arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.news__buttons__right-button {
+    width: 64px;
+    height: 64px;
+    background: #003CFF;
+    border-radius: 50px;
+    cursor: pointer;
+    border: none;
+    background-image: url(./assets/imgs/right_arrow.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 14px;
 }
 
 .footer {
