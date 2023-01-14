@@ -1,8 +1,20 @@
 
 const slider = document.querySelector('.news__slider')
-const currenciesExchangeList = document.querySelector('.exchange-rate__left-block__dl')
-const sliderNext = document.querySelector('.news__buttons__right-button')
-const sliderBack = document.querySelector('.news__buttons__left-button')
+const currenciesExchangeList = document.querySelector('.exchange-rate__description-list')
+const sliderNext = document.querySelector('.news__right-button')
+const sliderBack = document.querySelector('.news__left-button')
+const burgerMenu = document.querySelector('.burger-menu__field')
+const popup = document.querySelector('.popup')
+const body = document.body
+
+const menu = document.querySelector('.navigation__list').cloneNode(1)
+const navigationButton = document.querySelector('.header__button').cloneNode(1)
+const navigationLinks = Array.from(menu.children)
+
+navigationButton.classList.add('header__button_mobile-version')
+const li = document.createElement('li')
+li.appendChild(navigationButton)
+menu.appendChild(li)
 
 const defaultCurrenciesArray = 
 [
@@ -54,10 +66,13 @@ const addCurrencyValuesToDOM = data => {
     data.forEach(values => {
         const dt = document.createElement('dt')
         const dd = document.createElement('dd')
+        const div = document.createElement('div')
+        div.classList.add('exchange-rate__list-container')
         dt.innerHTML = values['from'] + ':'
         dd.innerHTML= values['roundValue']
-        currenciesExchangeList.appendChild(dt)
-        currenciesExchangeList.appendChild(dd)
+        div.appendChild(dt)
+        div.appendChild(dd)
+        currenciesExchangeList.appendChild(div)
    })
 }
 
@@ -148,7 +163,29 @@ const updateCurrencyExchange = () => {
     promises.splice(0, promises.length)
 }
 
+const hambHandler = (e) => {
+  e.preventDefault()
+  popup.classList.toggle("open")
+  burgerMenu.classList.toggle("active")
+  body.classList.toggle("noscroll")
+  renderPopup()
+}
+
+const renderPopup = () => {
+  popup.appendChild(menu)
+}
+
+const closeOnClick = () => {
+  popup.classList.remove("open")
+  burgerMenu.classList.remove("active")
+  body.classList.remove("noscroll")
+}
+
+navigationLinks.forEach((link) => {
+    link.addEventListener("click", closeOnClick)
+  })
+
+burgerMenu.addEventListener("click", hambHandler)
 updateCurrencyExchange()
 addNewsToDOM()
 setInterval(updateCurrencyExchange, 900000)
-
