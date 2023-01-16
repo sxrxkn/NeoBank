@@ -87,7 +87,7 @@ body {
     color: #B4387A;
 }
 
-.header__ul {
+.navigation__list {
     display: flex;
     justify-content: space-between;
     color: #1D1929;
@@ -109,6 +109,14 @@ body {
     color: #FFFFFF;
 }
 
+.burger-menu {
+    display: none;
+}
+
+.popup {
+    display: none;
+}
+
 main {
     width: 86%;
     margin: 0 auto;
@@ -125,7 +133,7 @@ main {
     width: 624px;
 }
 
-.card-design__left-block__h {
+.card-design__heading {
     padding-bottom: 36px;
     font-weight: 700;
     font-size: 48px;
@@ -155,7 +163,7 @@ main {
     align-items: center;
 }
 
-.features_description__h {
+.features__heading {
     padding-bottom: 20px;
     font-weight: 500;
     
@@ -163,14 +171,14 @@ main {
     color: #0B132A;
 }
 
-.features_description__p {
+.features__text {
     padding-bottom: 25px;
     font-weight: 400;
     font-size: 14px;
 }
 
 
-.features_description__list li {
+.features__list li {
     padding-left: 18px;
     padding-bottom: 12px;
     font-weight: 400;
@@ -178,7 +186,7 @@ main {
     list-style-image: url('./assets/imgs/select.svg')
 }
 
-.features_description__list li p {
+.features__list li p {
     transform: translateY(-7px);
 }
 
@@ -197,42 +205,53 @@ main {
     padding-left: 32px;
 }
 
-.exchange-rate__left-block__h {
+.exchange-rate__heading {
     font-weight: 500;
     font-size: 30px;
 }
 
-.exchange-rate__left-block__p {
+.exchange-rate__text{
     font-weight: 500;
     font-size: 20px;
     padding-top: 30px;
 }
 
 
-.exchange-rate__left-block__dl {
+.exchange-rate__description-list {
     letter-spacing: 0.02em;
     font-weight: 700;
     padding-top: 50px;
     padding-bottom: 30px;
-    width: 450px;
     display: flex;
     flex-wrap: wrap;
 }
 
-.exchange-rate__left-block__dl dt {
+.exchange-rate__description-list dt {
     padding-right: 32px;
     padding-bottom: 32px;
     color: #808080;
     font-size: 20px;
+    display: inline-block;
 }
 
-.exchange-rate__left-block__dl dd{
+.exchange-rate__description-list dd{
     padding-right: 20px;
     font-size: 20px;
     color: #000000;
+    display: inline;
+    margin: 0;
 }
 
-.exchange-rate__left-block__a {
+.exchange-rate__description-list dd::after{
+    display: block;
+    content: '';
+}
+
+.exchange-rate__list-container {
+    padding-right: 40px;
+}
+
+.exchange-rate__link {
     font-size: 20px;
     color: #FFFFFF;
 }
@@ -242,12 +261,12 @@ main {
 }
 
 
-.exchange-rate__right-block__img {
+.exchange-rate__image {
     display: flex;
     justify-content: end;
 }
 
-.exchange-rate__right-block__p {
+.exchange-rate__info-text {
     padding-bottom: 86px;
 }
 
@@ -256,14 +275,14 @@ main {
     text-align: center;
 }
 
-.map-h {
+.map__heading {
     padding-bottom: 20px;
     font-weight: 500;
     font-size: 30px;
     color: var(--spare-black);
 }
 
-.map-h3 {
+.map__info-text {
     font-weight: 500;
     font-size: 16px;
     padding-bottom: 48px;
@@ -275,7 +294,7 @@ main {
     overflow-x: hidden;
 }
 
-.news__header {
+.news__heading {
     padding-bottom: 20px;
 }
 
@@ -305,7 +324,7 @@ main {
     border-radius: 28px;
 }
 
-.news__slider__slide__header {
+.news__slider__slide__heading {
     width: 256px;
     padding-bottom: 32px;
 }
@@ -336,7 +355,7 @@ main {
     cursor: not-allowed
 }
 
-.news__buttons__left-button {
+.news__left-button {
     width: 64px;
     height: 64px;
     background: #FFFFFF;
@@ -348,7 +367,7 @@ main {
     background-position: center;
 }
 
-.news__buttons__right-button {
+.news__right-button {
     width: 64px;
     height: 64px;
     background: #003CFF;
@@ -367,7 +386,7 @@ main {
     background: linear-gradient(0deg, rgba(178, 178, 178, 0.2), rgba(178, 178, 178, 0.2)), #F4F4F4;
 }
 
-.container {
+.footer__content {
     width: 86%;
     margin: 0 auto;
 }
@@ -378,23 +397,23 @@ main {
     justify-content: space-between;
 }
 
-.footer__flex-block__logo {
+.footer__logo {
     width: 158px;
     height: 60px;
 }
 
-.footer__flex-block__number {
+.footer__phone-number {
     padding-bottom: 12px;
     font-weight: 700;
     font-size: 30px;
 }
 
-.footer__flex-block__mail {
+.footer__mail {
     color: #2D3748;
     font-weight: 500;
 }
 
-.footer__ul {
+.footer__list {
     font-weight: 500;
     padding-top: 56px;
     display: flex;
@@ -402,7 +421,7 @@ main {
     padding-bottom: 28px;
 }
 
-.footer__ul li {
+.footer__list li {
     padding-right: 32px;
     padding-bottom: 10px;
 }
@@ -412,7 +431,7 @@ main {
     border: 2px solid white;
 }
 
-.footer__p {
+.footer__cookies-info {
     padding-top: 32px;
 }
 
@@ -434,7 +453,7 @@ main {
         height: auto;
     }
 
-    .container {
+    .footer__content {
         width: 920px;
     }
 }
@@ -444,7 +463,7 @@ main {
         width: 96%;
     }
 
-    .header__ul {
+    .navigation__list {
         gap: 20px;
     }
 
@@ -460,7 +479,7 @@ main {
         width: 96%;
     }
 
-    .card-design__left-block__h {
+    .card-design__heading {
         font-size: 24px;
         line-height: 30px;
     }
@@ -470,16 +489,16 @@ main {
         height: auto;
     }
 
-    .features__img img{
+    .features__image img{
         width: 300px;
         height: auto;
     }
 
-    .features_description__h {
+    .features__heading {
         font-size: 24px;
     }
 
-    .exchange-rate__left-block__h {
+    .exchange-rate__heading {
         font-size: 24px;
     }
 
@@ -488,7 +507,7 @@ main {
         height: auto;
     }
 
-    .map-h {
+    .map__heading {
         font-size: 24px;
     }
 
@@ -500,37 +519,111 @@ main {
         padding-top: 50px;
     }
 
-    .container {
+    .footer__content {
         width: 96%;
     }
 
-    .footer__flex-block__number {
+    .footer__phone-number {
         font-size: 24px;
     }
 
-    .footer__flex-block__logo {
+    .footer__logo {
         width: 130px;
         height: auto;
     }
 
-    .footer__p {
+    .footer__cookies-info {
         font-size: 12px;
     }
 }
 
 @media (max-width: 640px) {
-    .header__ul {
-        flex-wrap: wrap;
+    .navigation__list {
+        display: none;
+    }
+
+    .header__button {
+        display: none;
+    }
+
+    .header__button_mobile-version {
+        display: flex;
+    }
+
+    .burger-menu {
+        display: flex;
+        align-items: center;
+    }
+
+    .burger-menu__field {
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .bar {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 6px auto;
+        background-color: #B4387A;
+        transition: 0.2s;
+    }
+    
+    .popup {
+        position: fixed;
+        top: 75px;
+        left: -100%;
         width: 100%;
         height: 100%;
-        gap: 5px;
+        background-color: #F5F4FF;
+        z-index: 100;
+        display: flex;
+        transition: 0.3s;
     }
 
-    .header {
+    .popup.open {
+        left: 0;
+    }
+    
+    .popup .navigation__list {
+        width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding: 100px 0;
+        overflow: auto;
     }
+    
+    .popup .navigation__list > li {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 20px 0;
+        font-size: 20px;
+        font-weight: bold;
+        color: #3f3f3f;
+    }
+    
+    .burger-menu__field.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .burger-menu__field.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    
+    .burger-menu__field.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    body.noscroll {
+        overflow: hidden;
+    }
+    
 
-    .exchange-rate__right-block__img img {
+    .exchange-rate__image img {
         display: none;
     }
 
@@ -544,7 +637,7 @@ main {
         width: 200px;
     }
 
-    .card-design__left-block__h {
+    .card-design__heading {
         text-align: center;
     }
 
@@ -570,7 +663,7 @@ main {
         position: relative;
     }
 
-    .exchange-rate__right-block__p {
+    .exchange-rate__info-text {
         position: absolute;
         top: 84px;
         width: 30vw;
@@ -578,8 +671,8 @@ main {
         left: 150px;
     }
 
-    .exchange-rate__left-block__dl {
-        width: 80%;
+    .exchange-rate__description-list {
+        width: 100%;
     }
 }
 
@@ -597,36 +690,36 @@ main {
         height: auto;
     }
 
-    .features__img {
+    .features__image {
         display: none;
     }
 
-    .card-design__left-block__h {
+    .card-design__heading {
         margin: 0 auto;
         width: 100%;
     }
 
-    .exchange-rate__left-block__h {
+    .exchange-rate__heading {
         font-size: 20px;
     }
 
-    .features_description__h {
+    .features__heading {
         font-size: 20px;
     }
 
-    .features_description__list {
+    .features__list {
         padding-left: 30px;
     }
 
-    .exchange-rate__right-block__p {
+    .exchange-rate__info-text {
         display: none;
     }
 
-    .exchange-rate__right-block__img {
+    .exchange-rate__image {
         display: none;
     }
 
-    .container {
+    .footer__content {
         width: 96%;
     }
 
@@ -634,16 +727,16 @@ main {
         height: 100%;
     }
 
-    .footer__flex-block__number {
+    .footer__phone-number {
         font-size: 18px;
     }
 
-    .footer__flex-block__logo {
+    .footer__logo {
         width: 100px;
         height: auto;
     }
     
-    .footer__p {
+    .footer__cookies-info {
         font-size: 12px;
     }
 }
