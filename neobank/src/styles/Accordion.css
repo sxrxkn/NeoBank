@@ -1,0 +1,22 @@
+.accordion__item { 
+    position: relative;
+    padding-left: 32px;
+    padding-right: 70px;
+    border: 1px solid #E2E8F0;
+}
+
+.accordion__icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    width:  20px;
+    height: 10px;
+    background: url(../assets/imgs/accordionOpener.svg) 0 0 no-repeat;
+}
+
+.accordion__title {
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}

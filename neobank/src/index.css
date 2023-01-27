@@ -1,0 +1,77 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  color: var(--main-black);
+  background-color: #F5F4FF;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --main-black:  #1C1C1E;
+  --spare-black: #1C1C1C;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url(./assets/fonts/ubuntu/Ubuntu-Light.woff2),
+  url(./assets/fonts/ubuntu/Ubuntu-Light.woff);
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url(./assets/fonts/ubuntu/Ubuntu-Regular.woff2),
+  url(./assets/fonts/ubuntu/Ubuntu-Regular.woff);
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url(./assets/fonts/ubuntu/Ubuntu-Medium.woff2),
+  url(./assets/fonts/ubuntu/Ubuntu-Medium.woff);
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url(./assets/fonts/rubik/Rubik-Light.woff2),
+  url(./assets/fonts/ubuntu/Ubuntu-Light.woff);
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url(./assets/fonts/rubik/Rubik-Medium.woff2),
+  url(./assets/fonts/ubuntu/Ubuntu-Medium.woff);
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a:active,
+a:hover,  
+a {
+text-decoration: none;
+color: var(--main-black);
+}
