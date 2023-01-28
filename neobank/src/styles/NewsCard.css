@@ -13,6 +13,8 @@
 
 .news__slide-heading {
     width: 256px;
+    height: 80px;
+    overflow-y: hidden;
     padding-bottom: 32px;
 }
 
@@ -25,6 +27,7 @@
 .news__slide-description {
     width: 256px;
     height: 104px;
+    overflow: hidden;
     padding-bottom: 46px;
 }
 

@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
 
+import Button from "../components/Button";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import NewsCard from "../components/NewsCard";
+import CurrencyBlock from "../components/CurrencyExchangeContainer";
+import SubscribeField from "../components/SubscribeField";
 
 import { ReactComponent as BankIcon } from "../assets/imgs/bank-icon.svg";
 
-import "../styles/Home.css";
-import NewsCard from "../components/NewsCard";
-import { Currencies, NewsData } from "../models";
+import { Currencies, News, NewsData } from "../models";
 import { defaultCurrenciesArray } from "../utils/data";
-import CurrencyBlock from "../components/CurrencyExchangeContainer";
-import SubscribeField from "../components/SubscribeField";
+import { getNewsData, isApiError } from "../utils/api";
+
+import "../styles/Home.css";
 
 function Home() {
   const [cardData, setCardData] = useState<NewsData[]>([]);
   const [leftButtonDisableState, setLeftButtonDisableState] = useState(true);
   const [rightButtonDisableState, setRightButtonDisableState] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(2);
+  const [currenciesValue, setCurrenciesValue] = useState<Currencies[]>([]);
 
   const slider = document.querySelector<HTMLElement>(".news__slider");
 
@@ -44,98 +46,94 @@ function Home() {
     }
   };
 
-  const getNewsData = async (url: string) => {
-    const newsData = await fetch(url).then((response) => response.json());
-    return newsData;
-  };
-
-  const addNewsToDOM = (newsCount = 36) => {
-    const newsApiURL = `https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=${newsCount}&apiKey=ed7793fe31c54696898542bd8ab3e8f9`;
-    try {
-      getNewsData(newsApiURL).then((data) => {
-        const newsArray: NewsData[] = [];
-        data["articles"].forEach((news: any) => {
-          // Убрать any
-          if (news["description"] && !news["description"].includes("<a")) {
-            const image = new Image();
-            image.src = news["urlToImage"];
-
-            const description: string = news["description"];
-            const link: string = news["url"];
-            const urlToImage: string = news["urlToImage"];
-            const title: string = news["title"];
-            newsArray.push({ description, link, urlToImage, title });
-          }
-        });
-        newsArray.forEach((element, index) => {
-          const image = new Image();
-          image.src = element.urlToImage;
-          image.onload = () => {
-            console.log("Супер");
-          };
-          image.onerror = () => {
-            console.log("Номер:", index);
-            newsArray.splice(index, 1);
-          };
-        });
-        setCardData(newsArray);
-      });
-    } catch (err: any) {
-      //Тут нужно убрать any
-      console.log(console.log("Something went wrong. Error: ", err.message));
-    }
-  };
-
   useEffect(() => {
+    const addNewsToDOM = (newsCount = 36) => {
+      const newsApiURL = `https://newsapi.org/v2/top-headlines?country=us&category=business&pageSize=${newsCount}&apiKey=ed7793fe31c54696898542bd8ab3e8f9`;
+      try {
+        getNewsData(newsApiURL).then((data) => {
+          const newsArray: NewsData[] = [];
+          data["articles"].forEach((news: News) => {
+            if (news["description"] && !news["description"].includes("<a")) {
+              const image = new Image();
+              image.src = news["urlToImage"];
+
+              const description: string = news["description"];
+              const link: string = news["url"];
+              const urlToImage: string = news["urlToImage"];
+              const title: string = news["title"];
+              newsArray.push({ description, link, urlToImage, title });
+            }
+          });
+          newsArray.forEach((element, index) => {
+            const image = new Image();
+            image.src = element.urlToImage;
+            image.onload = () => {};
+            image.onerror = () => {
+              newsArray.splice(index, 1);
+            };
+          });
+          setCardData(newsArray);
+        });
+      } catch (err) {
+        if (isApiError(err)) {
+          console.log("Something went wrong. Error: ", err.code);
+        }
+      }
+    };
     addNewsToDOM();
   }, []);
 
-  const promises: Promise<Currencies>[] = [];
+  useEffect(() => {
+    const promises: Promise<Currencies>[] = [];
 
-  const [currenciesValue, setCurrenciesValue] = useState<Currencies[]>([]);
+    const getCurrencyExchangeData = (
+      currenciesArray = defaultCurrenciesArray
+    ) => {
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "a749e2e215msh156b9c24f55d9e9p1ef9c6jsn8c00b0b8ec88",
+          "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
+        },
+      };
 
-  const getCurrencyExchangeData = (
-    currenciesArray = defaultCurrenciesArray
-  ) => {
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "a749e2e215msh156b9c24f55d9e9p1ef9c6jsn8c00b0b8ec88",
-        "X-RapidAPI-Host": "currency-exchange.p.rapidapi.com",
-      },
+      for (let i = 0; i < currenciesArray.length; i += 1) {
+        try {
+          const promise: Promise<Currencies> = new Promise(
+            (resolve, reject) => {
+              const data = currenciesArray[i];
+              const from = data["from"];
+              const to = data["to"];
+              fetch(
+                `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=1`,
+                options
+              )
+                .then((response) => response.json())
+                .then((response) => {
+                  const roundValue = (
+                    Math.round(response * 100) / 100
+                  ).toString();
+                  resolve({ from, roundValue });
+                });
+            }
+          );
+          promises.push(promise);
+        } catch (err) {
+          if (isApiError(err))
+            console.log("Something went wrong. Error: ", err.code);
+        }
+      }
     };
 
-    for (let i = 0; i < currenciesArray.length; i += 1) {
-      try {
-        const promise: Promise<Currencies> = new Promise((resolve, reject) => {
-          const data = currenciesArray[i];
-          const from = data["from"];
-          const to = data["to"];
-          fetch(
-            `https://currency-exchange.p.rapidapi.com/exchange?from=${from}&to=${to}&q=1`,
-            options
-          )
-            .then((response) => response.json())
-            .then((response) => {
-              const roundValue = (Math.round(response * 100) / 100).toString();
-              resolve({ from, roundValue });
-            });
-        });
-        promises.push(promise);
-        // Убрать any
-      } catch (err: any) {
-        console.log("Something went wrong. Error: ", err.message);
-      }
-    }
-  };
-  const updateCurrencyExchange = () => {
-    getCurrencyExchangeData();
-    Promise.all(promises).then((values) => setCurrenciesValue(values));
-    promises.splice(0, promises.length);
-  };
+    const updateCurrencyExchange = () => {
+      getCurrencyExchangeData();
+      Promise.all(promises).then((values) => setCurrenciesValue(values));
+      promises.splice(0, promises.length);
+    };
 
-  useEffect(() => {
     updateCurrencyExchange();
+
     const interval = setInterval(() => {
       updateCurrencyExchange();
     }, 900000);

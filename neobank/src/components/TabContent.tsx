@@ -1,10 +1,6 @@
 import React from "react";
 
-interface TabContentProps {
-  id: string;
-  activeTab: string;
-  children: React.ReactNode;
-}
+import { TabContentProps } from "../models";
 
 const TabContent = ({ id, activeTab, children }: TabContentProps) => {
   return activeTab === id ? <div className="TabContent">{children}</div> : null;

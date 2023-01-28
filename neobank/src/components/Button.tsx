@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/Button.css";
 
-interface ButtonProps {
-  buttonClass: string;
-  to: string;
-  content: string;
-}
+import { ButtonProps } from "../models";
+
+import "../styles/Button.css";
 
 function Button({ content, buttonClass, to }: ButtonProps) {
   return (

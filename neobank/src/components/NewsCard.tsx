@@ -1,13 +1,8 @@
 import React from "react";
 
-import "../styles/NewsCard.css";
+import { NewsCardProps } from "../models";
 
-interface NewsCardProps {
-  heading: string;
-  imgSrc: string;
-  description: string;
-  link: string;
-}
+import "../styles/NewsCard.css";
 
 function NewsCard({ heading, imgSrc, description, link }: NewsCardProps) {
   return (

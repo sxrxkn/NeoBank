@@ -1,9 +1,9 @@
 import React from "react";
-import { NewsCardProps } from "../models";
+import { InfoCardProps } from "../models";
 
 import "../styles/InfoCard.css";
 
-function InfoCard({ styles, children }: NewsCardProps) {
+function InfoCard({ styles, children }: InfoCardProps) {
   return (
     <div className="info-card" style={styles}>
       {children}

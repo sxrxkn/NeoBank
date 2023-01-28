@@ -1,10 +1,11 @@
 import React from "react";
+
 import { AccordionProps } from "../models";
 
 import "../styles/Accordion.css";
 import "../styles/transition.css";
 
-const Accordion = ({ title, children, isOpened }: AccordionProps) => {
+const Accordion = ({ title, children }: AccordionProps) => {
   return (
     <div className="accordion__item">
       <div className="accordion__title">

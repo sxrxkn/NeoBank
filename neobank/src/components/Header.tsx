@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../styles/Header.css";
 import Button from "./Button";
 
-interface HeaderProps {
-  location?: string;
-}
+import { HeaderProps } from "../models";
+
+import "../styles/Header.css";
 
 function Header({ location }: HeaderProps) {
   const burgerMenu = document.querySelector(".burger-menu__field");

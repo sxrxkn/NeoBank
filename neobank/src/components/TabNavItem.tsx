@@ -1,13 +1,8 @@
 import React from "react";
 
-import "../styles/TabNavItem.css";
+import { TabNavProps } from "../models";
 
-interface TabNavProps {
-  id: string;
-  title: string;
-  activeTab: string;
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-}
+import "../styles/TabNavItem.css";
 
 const TabNavItem = ({ id, title, activeTab, setActiveTab }: TabNavProps) => {
   const handleClick = () => {

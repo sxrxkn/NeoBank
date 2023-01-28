@@ -1,83 +1,21 @@
 import React from "react";
 
+import { trackPromise } from "react-promise-tracker";
 import { Formik, Form, Field } from "formik";
+import axios from "axios";
+
+import {
+  validateAmount,
+  validateRequiredFields,
+  validateEmail,
+  validateBirthdate,
+  validatePasportSeries,
+  validatePasportNumber,
+} from "../utils/validate";
+
 import "../styles/Form.css";
 
 function FormContent() {
-  const validateEmail = (value: string) => {
-    if (!value) {
-      return "Required";
-    } else if (
-      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i.test(
-        value
-      )
-    ) {
-      return "Email invalid adress";
-    }
-  };
-
-  const validateAmount = (value: number) => {
-    if (!value) {
-      return "Required field";
-    } else if (value < 15000 || value > 600000) {
-      return "The amount should be from 15000 to 600000";
-    }
-  };
-
-  const validateRequiredFields = (value: string) => {
-    if (!value) {
-      return "Required field";
-    }
-  };
-
-  const validatePasportSeries = (value: number) => {
-    if (!value) {
-      return "Required field";
-    } else if (String(value).length !== 4) {
-      return "The series must be 4 digits";
-    }
-  };
-
-  const validatePasportNumber = (value: number) => {
-    if (!value) {
-      return "Required field";
-    } else if (String(value).length !== 6) {
-      return "The number must be 6 digits";
-    }
-  };
-
-  const validateBirthdate = (value: Date) => {
-    if (!value) {
-      return "Required field";
-    }
-    const today = new Date();
-    const birthDate = new Date(value);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    let m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    if (age < 18) {
-      return "User must be over 18 years old";
-    }
-
-    const parts = String(value).split("-");
-    const day = parseInt(parts[2]);
-    const month = parseInt(parts[1]);
-    const year = parseInt(parts[0]);
-
-    if (year < 1950 || year > 2023 || month === 0 || month > 12)
-      return "Enter the correct date";
-
-    const monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0))
-      monthLength[1] = 29;
-
-    if (!(day > 0 && day <= monthLength[month - 1]))
-      return "Enter the correct date";
-  };
-
   return (
     <Formik
       initialValues={{
@@ -91,8 +29,40 @@ function FormContent() {
         passportSeries: "",
         passportNumber: "",
       }}
-      onSubmit={(values) => {
-        console.log("submit", values);
+      onSubmit={({
+        amount,
+        term,
+        firstName,
+        lastName,
+        middleName,
+        email,
+        birthdate,
+        passportNumber,
+        passportSeries,
+      }) => {
+        const config = {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
+        };
+        trackPromise(
+          axios.post(
+            "http://localhost:8080/application",
+            {
+              amount: +amount,
+              term: +term,
+              firstName: firstName.toString(),
+              lastName: lastName.toString(),
+              middleName: middleName.toString(),
+              email: email.toString(),
+              birthdate: birthdate.toString(),
+              passportNumber: passportNumber.toString(),
+              passportSeries: passportSeries.toString(),
+            },
+            config
+          )
+        );
       }}
     >
       {({ errors, touched }) => (

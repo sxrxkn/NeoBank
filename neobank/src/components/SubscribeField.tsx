@@ -1,31 +1,42 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import axios from "axios";
+import { trackPromise } from "react-promise-tracker";
 
 import "../styles/Home.css";
 
 function SubscribeField() {
   const [isSubscribe, setSubscribe] = useState(false);
   const [inputValue, setInputValue] = useState<string | null>(null);
-  useEffect(() => {});
+
+  useEffect(() => {
+    const localStorageSubscribeInfo = localStorage.getItem("isSubscribe");
+    if (localStorageSubscribeInfo) setSubscribe(true);
+  }, []);
+
   const postEmail = () => {
-    const data = JSON.stringify({
-      email: inputValue,
-    });
-    axios.post("http://localhost:8080/email", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    // fetch("http://localhost:8080/email", {
-    //   method: "post",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: {
-    //     email: "ivanov@mail.com",
-    //   },
-    // });
+    if (!isSubscribe) {
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        },
+      };
+      trackPromise(
+        axios
+          .post(
+            "http://localhost:8080/email",
+            {
+              email: inputValue,
+            },
+            config
+          )
+          .then(() => {
+            localStorage.setItem("isSubscribe", "true");
+            setSubscribe(true);
+          })
+      );
+    }
   };
 
   return (
@@ -35,11 +46,7 @@ function SubscribeField() {
           You are already subscribed to the bank's newsletter
         </p>
       )) || (
-        <form
-          action="http://localhost:8080/email"
-          method="post"
-          className="subscribe-form"
-        >
+        <div className="subscribe-form">
           <input
             className="newsletter-subscribe__input"
             type="email"
@@ -55,7 +62,7 @@ function SubscribeField() {
           >
             Subscribe
           </button>
-        </form>
+        </div>
       )}
     </>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+
 import { CurrencyBlockProps } from "../models";
 
 import "../styles/CurrencyExchangeContainer.css";

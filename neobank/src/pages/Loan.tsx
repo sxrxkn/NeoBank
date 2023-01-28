@@ -1,15 +1,16 @@
 import React, { useRef, useState } from "react";
+import { CSSTransition } from "react-transition-group";
+import { useLocation } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-
-import "../styles/Loan.css";
-import "../styles/Button.css";
-import "../styles/transition.css";
-
 import TabNavItem from "../components/TabNavItem";
 import TabContent from "../components/TabContent";
 import Accordion from "../components/Accordion";
+import InfoCard from "../components/InfoCard";
+import FormContent from "../components/Form";
+import AccordionAnswersTab from "../components/AccordionAnswersTab";
+
 import {
   aboutCardData,
   accordionIssuingData,
@@ -18,20 +19,19 @@ import {
   conditions,
 } from "../utils/data";
 
-import InfoCard from "../components/InfoCard";
-import FormContent from "../components/Form";
-import AccordionAnswersTab from "../components/AccordionAnswersTab";
-import { CSSTransition } from "react-transition-group";
-import { useLocation } from "react-router-dom";
+import "../styles/Loan.css";
+import "../styles/Button.css";
+import "../styles/transition.css";
 
 function Loan() {
-  const location = String(useLocation().pathname);
   const [activeTab, setActiveTab] = useState("tab1");
   const [firstAccordionCurrentIndex, setFirstAccordionCurrentIndex] = useState<
     number | null
   >(null);
   const [secondAccordionCurrentIndex, setSecondAccordionCurrentIndex] =
     useState<number | null>(null);
+
+  const location = String(useLocation().pathname);
 
   const myRef = useRef<null | HTMLElement>(null);
 
@@ -186,10 +186,7 @@ function Loan() {
                       );
                     }}
                   >
-                    <Accordion
-                      title={title}
-                      isOpened={index === firstAccordionCurrentIndex}
-                    >
+                    <Accordion title={title}>
                       <CSSTransition
                         in={index === firstAccordionCurrentIndex}
                         timeout={150}
@@ -213,10 +210,7 @@ function Loan() {
                       );
                     }}
                   >
-                    <Accordion
-                      title={title}
-                      isOpened={index === firstAccordionCurrentIndex}
-                    >
+                    <Accordion title={title}>
                       {index === secondAccordionCurrentIndex && (
                         <AccordionAnswersTab
                           content={content}
