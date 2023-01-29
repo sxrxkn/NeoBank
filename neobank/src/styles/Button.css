@@ -1,0 +1,24 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 16px;
+    width: 128px;
+    height: 50px;
+    background: #003CFF;
+    font-weight: 700;
+    font-size: 16px;
+    color: white;
+}
+
+.button:hover, .button:disabled{
+    background: #7796C0;
+}
+
+
+
+.button .link {
+    color: white;
+}
+

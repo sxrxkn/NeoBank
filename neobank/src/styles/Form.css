@@ -1,0 +1,88 @@
+.form {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+    height: auto;
+    padding: 32px;
+}
+
+.form__heading {
+    padding-bottom: 32px;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.form__extra-heading {
+    padding-bottom: 26px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.form__range {
+    width: 520px;
+}
+
+.form__submit-button {
+    border: none;
+}
+
+.form__label {
+    display: block;
+    padding-bottom: 8px;
+}
+
+.form__amount {
+    padding-bottom: 32px;
+}
+
+.form__flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    flex-grow: 0;
+    gap: 16px;
+    padding-bottom: 34px;
+}
+
+.form__field {
+    display: block;
+    width: 270px;
+    height: 40px;
+    background: #F9F5E3;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 6px;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+.form__field:focus {   
+    outline-color: #ff00f7;
+    outline-width: 2px;
+}
+
+.form__submit-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.required {
+    color: #FF5631;
+}
+
+.form__invalid-field {
+    border-color: #FF5631;
+    border-width: 2px;
+    background: url('../assets/imgs/invalid.svg') no-repeat scroll 92% 50%;
+}
+
+.form__valid-field {
+    background: url('../assets/imgs/valid.svg') no-repeat scroll 92% 50%;
+}
+
+.form__tip {
+    padding-bottom: 4px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #FF5631;
+}
