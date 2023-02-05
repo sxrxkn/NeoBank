@@ -13,9 +13,14 @@ import {
   validatePasportNumber,
 } from "../utils/validate";
 
+import { updateInfo } from "../store/reducers/LoanOffersReducer";
+import { useAppDispatch } from "../store/store";
+
 import "../styles/Form.css";
 
 function FormContent() {
+  const dispatch = useAppDispatch();
+
   return (
     <Formik
       initialValues={{
@@ -47,21 +52,33 @@ function FormContent() {
           },
         };
         trackPromise(
-          axios.post(
-            "http://localhost:8080/application",
-            {
-              amount: +amount,
-              term: +term,
-              firstName: firstName.toString(),
-              lastName: lastName.toString(),
-              middleName: middleName.toString(),
-              email: email.toString(),
-              birthdate: birthdate.toString(),
-              passportNumber: passportNumber.toString(),
-              passportSeries: passportSeries.toString(),
-            },
-            config
-          )
+          axios
+            .post(
+              "http://localhost:8080/application",
+              {
+                amount: +amount,
+                term: +term || 6,
+                firstName: firstName,
+                lastName: lastName,
+                middleName: middleName,
+                email: email,
+                birthdate: birthdate,
+                passportSeries: passportSeries.toString(),
+                passportNumber: passportNumber.toString(),
+              },
+              config
+            )
+            .then((response) => {
+              dispatch(updateInfo(response.data));
+              localStorage.setItem(
+                "isPostedPrescoring",
+                JSON.stringify({
+                  id: response.data[0].applicationId,
+                  term: term || 6,
+                  amount: amount,
+                })
+              );
+            })
         );
       }}
     >

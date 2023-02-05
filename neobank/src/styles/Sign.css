@@ -1,0 +1,56 @@
+.sign {
+    padding-top: 100px;
+}
+
+.sign__flex {
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    padding-bottom: 32px;
+
+}
+
+.sign__heading {
+    font-weight: 700;
+    font-size: 30px;
+    color: #1C1C1E;
+}
+
+.sign__step-info {
+    font-weight: 500;
+    font-size: 16px;    
+}
+
+.sign__content {
+    font-weight: 500;
+    font-size: 20px;
+    color: #4F5665;
+    padding-bottom: 40px;
+}
+
+.sign__container {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.sign__image {
+    width: 35px;
+    height: 45px;
+}
+
+.sign__file-link {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.sign__confirm {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.sign__checkbox {
+    padding-right: 80px;
+}

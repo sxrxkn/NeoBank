@@ -53,6 +53,10 @@
     transform: rotate(10deg);
 }
 
+.card-description__button {
+    text-align: center;
+}
+
 .tabs {
     padding-top: 48px;
     padding-bottom: 12px;
@@ -165,4 +169,31 @@
 
 .accordion__heading {
     padding: 32px 0;
+}
+
+.offers {
+    display: flex;
+}
+
+.succesful-apply {
+    border: 1px solid #5B35D5;
+    height: 100px;
+    text-align: center;
+    height: auto;
+    
+}
+
+.succesful-apply__heading {
+    font-weight: 700;
+    font-size: 30px;
+    padding-top: 24px;
+    padding-bottom: 32px;
+    color: #1C1C1E;
+}
+
+.succesful-apply__text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #4F5665;
+    padding-bottom: 34px;
 }

@@ -1,6 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { useLocation } from "react-router-dom";
+
+import { useAppSelector, useAppDispatch } from "../store/store";
+import { updateInfo, updateStatus } from "../store/reducers/LoanOffersReducer";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -10,6 +13,8 @@ import Accordion from "../components/Accordion";
 import InfoCard from "../components/InfoCard";
 import FormContent from "../components/Form";
 import AccordionAnswersTab from "../components/AccordionAnswersTab";
+import CardLoanOffer from "../components/CardLoanOffer";
+import Button from "../components/Button";
 
 import {
   aboutCardData,
@@ -19,6 +24,9 @@ import {
   conditions,
 } from "../utils/data";
 
+import { getOffersLoanData, getStatus } from "../utils/api";
+
+import { Offer } from "../models";
 import "../styles/Loan.css";
 import "../styles/Button.css";
 import "../styles/transition.css";
@@ -31,12 +39,64 @@ function Loan() {
   const [secondAccordionCurrentIndex, setSecondAccordionCurrentIndex] =
     useState<number | null>(null);
 
-  const location = String(useLocation().pathname);
+  const dispatch = useAppDispatch();
 
+  const offers: Offer[] | null = useAppSelector(
+    (state) => state.updateInformation.offers
+  );
+  const status: string | null = useAppSelector(
+    (state) => state.updateInformation.status
+  );
+
+  const isPostedPrescoring = JSON.parse(
+    localStorage.getItem("isPostedPrescoring") || "{}"
+  );
+  const location = String(useLocation().pathname);
   const myRef = useRef<null | HTMLElement>(null);
 
   const executeScroll = () =>
     myRef.current!.scrollIntoView({ block: "end", behavior: "smooth" });
+
+  useEffect(() => {
+    if (status) {
+      if (status === "CC_DENIED" || status === "CLIENT_DENIED") {
+        localStorage.clear();
+        dispatch(updateStatus(null));
+        dispatch(updateInfo(null));
+      }
+    }
+  });
+
+  useEffect(() => {
+    const isLoanApply = localStorage.getItem("isLoanApply");
+    if (isLoanApply) {
+      getStatus(isPostedPrescoring.id).then((data) => {
+        dispatch(updateStatus(data.data.status));
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (isPostedPrescoring.id && !localStorage.getItem("isLoanApply")) {
+      getOffersLoanData(
+        isPostedPrescoring.id,
+        +isPostedPrescoring.term,
+        +isPostedPrescoring.amount
+      ).then((data) => {
+        localStorage.setItem(
+          "isPostedPrescoring",
+          JSON.stringify({
+            id: data.data[0].applicationId,
+            term: +isPostedPrescoring.term,
+            amount: +isPostedPrescoring.amount,
+          })
+        );
+        dispatch(updateInfo(data.data));
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -67,12 +127,30 @@ function Loan() {
                 </p>
               </li>
             </ul>
-            <button
-              className="card-description__button button"
-              onClick={() => executeScroll()}
-            >
-              Apply for card
-            </button>
+            {(!status && (
+              <button
+                className="card-description__button button"
+                onClick={() => executeScroll()}
+              >
+                Apply for card
+              </button>
+            )) || (
+              <Button
+                to={`${
+                  status === "APPROVED"
+                    ? `/loan/${isPostedPrescoring.id}`
+                    : status === "CC_APPROVED"
+                    ? `/loan/${isPostedPrescoring.id}/document`
+                    : localStorage.getItem("isSigned")
+                    ? `/loan/${isPostedPrescoring.id}/code`
+                    : status === "DOCUMENT_CREATED"
+                    ? `/loan/${isPostedPrescoring.id}/document/sign`
+                    : ""
+                } `}
+                buttonClass="card-description__button"
+                content="Continue registration"
+              />
+            )}
           </div>
           <div className="card-description__card-image">
             <img
@@ -267,7 +345,34 @@ function Loan() {
         </section>
 
         <section className="form-container" ref={myRef}>
-          <FormContent />
+          {(status && (
+            <section className="succesful-apply">
+              <h2 className="succesful-apply__heading">
+                The preliminary decision has been sent to your email.
+              </h2>
+              <p className="succesful-apply__text">
+                In the letter you can get acquainted with the preliminary
+                decision on the credit card.
+              </p>
+            </section>
+          )) ||
+            (!offers && <FormContent />) || (
+              <section className="offers">
+                {offers?.map((data: Offer) => (
+                  <CardLoanOffer
+                    id={data.applicationId}
+                    payment={data.monthlyPayment}
+                    requestedAmount={data.requestedAmount}
+                    rate={data.rate}
+                    isInsuranceEnabled={data.isInsuranceEnabled}
+                    isSalaryClient={data.isSalaryClient}
+                    term={data.term}
+                    totalAmount={data.totalAmount}
+                    key={data.monthlyPayment}
+                  ></CardLoanOffer>
+                ))}
+              </section>
+            )}
         </section>
       </main>
 

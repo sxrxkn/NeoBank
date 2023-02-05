@@ -82,3 +82,44 @@ export interface TabNavProps {
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface CardLoanOfferProps {
+  id: number;
+  payment: number;
+  requestedAmount: number;
+  rate: number;
+  isInsuranceEnabled: boolean;
+  isSalaryClient: boolean;
+  term: number;
+  totalAmount: number;
+}
+
+export interface TableData {
+  number: string;
+  date: string;
+  totalPayment: string;
+  interestPayment: string;
+  debtPayment: string;
+  remainingDebt: string;
+}
+
+export interface Offer {
+  applicationId: number;
+  isInsuranceEnabled: boolean;
+  isSalaryClient: boolean;
+  monthlyPayment: number;
+  rate: number;
+  requestedAmount: number;
+  term: number;
+  totalAmount: number;
+}
+
+export interface StepSuccesfulFinishedProps {
+  heading: string;
+  text: string;
+}
+
+export interface SortConfig {
+  direction: string;
+  key: string;
+}
