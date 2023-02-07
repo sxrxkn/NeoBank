@@ -1,0 +1,34 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.table thead {
+    color: #4A5568;
+    padding: 20px;
+    text-align: left;
+}
+
+.table tbody {
+    color: #1A202C;
+}
+
+.table tr {
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.table td, .table th {
+    padding: 20px 0;
+}
+
+.ascending {
+    background-image: none;
+    background: url(../assets/imgs/table-arrow-up.svg) no-repeat 50% 45%;
+}
+
+.descending {
+    background-image: none;
+    background: url(../assets/imgs/table-arrow-down.svg) no-repeat 50% 45%;
+}

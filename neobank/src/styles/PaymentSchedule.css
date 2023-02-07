@@ -1,0 +1,19 @@
+.confirm {
+    padding-top: 46px;
+    padding-bottom: 20px;
+}
+
+.confirm-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.confirm__deny {
+    background: rgba(217, 55, 55, 0.8);
+}
+
+.confrim__label {
+    PADDING-LEFT: 14px;
+    padding-right: 40px;
+}

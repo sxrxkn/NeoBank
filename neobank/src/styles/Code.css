@@ -1,0 +1,71 @@
+.code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 130px;
+    padding-bottom: 30px;
+}
+
+.code__heading {
+    padding-bottom: 32px;
+    font-weight: 700;
+    font-size: 30px;
+    color: #1C1C1E;
+}
+
+.code__input {
+    outline: none;
+    border: 0.5px solid #808080;
+    background: url(../assets/imgs//pinBackImg.svg) scroll no-repeat 50% 50%;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    margin: 13px;
+}
+
+.code__input:focus, .code__input:active, .code__input:not(.code__input[value=""]){
+    border: 1px solid #3182CE;
+    background-image: none;
+}
+
+.finish-registration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    padding-top: 62px;
+}
+
+.finish-registration__img {
+    width: 150px;
+    height: 150px;
+}
+
+.finish-registration__heading {
+    font-weight: 700;
+    font-size: 30px;
+    color: #1C1C1E;
+}
+
+.finish-registration__text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #4F5665;
+}
+
+.finish-registration__button {
+    width: 268px;
+}
+
+.code__invalid {
+    color: #FF5631;
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 16px; 
+    text-align: center;
+}

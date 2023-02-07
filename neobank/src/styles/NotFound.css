@@ -1,0 +1,28 @@
+.not-found-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 290px;
+}
+
+.not-found-content__text {
+    font-weight: 500;
+    font-size: 30px;
+    padding-bottom: 32px;
+}
+
+.not-found-content__description {
+    font-weight: 500;
+    font-size: 16px;
+    color: #4B4B4B;
+    padding-bottom: 32px;
+}
+
+.not-found-content__right-block {
+    width: 60%;
+    height: auto;
+}
+
+.button_width-increase {
+    width: 192px;
+}
