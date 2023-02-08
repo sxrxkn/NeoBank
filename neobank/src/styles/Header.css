@@ -68,14 +68,6 @@ a {
     gap: 50px;
 }
 
-.burger-menu {
-    display: none;
-}
-
-.popup {
-    display: none;
-}
-
 .navigation_active-link a{
     color: rgba(178, 163, 95, 1);
 }

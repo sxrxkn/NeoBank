@@ -344,7 +344,11 @@ function Loan() {
           </ul>
         </section>
 
-        <section className="form-container" ref={myRef}>
+        <section
+          className="form-container"
+          data-testid="form-container"
+          ref={myRef}
+        >
           {(status && (
             <section className="succesful-apply">
               <h2 className="succesful-apply__heading">
