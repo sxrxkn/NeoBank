@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { trackPromise } from "react-promise-tracker";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
 
 import {
-  validateAmount,
   validateRequiredFields,
   validateEmail,
   validateBirthdate,
@@ -19,6 +18,7 @@ import { useAppDispatch } from "../store/store";
 import "../styles/Form.css";
 
 function FormContent() {
+  const [amountValue, setAmountValue] = useState("15000");
   const dispatch = useAppDispatch();
 
   return (
@@ -56,7 +56,7 @@ function FormContent() {
             .post(
               "http://localhost:8080/application",
               {
-                amount: +amount,
+                amount: +amountValue,
                 term: +term || 6,
                 firstName: firstName,
                 lastName: lastName,
@@ -85,30 +85,46 @@ function FormContent() {
       {({ errors, touched }) => (
         <Form className="form">
           <h2 className="form__heading">Customize your card</h2>
-          <div className="form__flex-container">
+          <div className="form__flex-amount-container">
             <div className="form__range-container form__amount">
-              <label className="form__label" htmlFor="amount">
-                Select amount <sup className="required">*</sup>
+              <label
+                className="form__label form__amount-label"
+                htmlFor="amount"
+              >
+                Select amount
               </label>
+              <p className="form__current-amount">
+                {amountValue.split(/(?=(?:...)*$)/).join(" ")}
+              </p>
               <Field
-                className={`form__field  ${
+                className={`form__field form__amount-field ${
                   errors.amount && touched.amount
                     ? "form__invalid-field"
                     : touched.amount
                     ? "form__valid-field"
                     : ""
                 }`}
-                type="number"
+                type="range"
                 name="amount"
                 min="15000"
+                onInput={(e: any) => {
+                  setAmountValue(e.target.value);
+                }}
                 max="600000"
                 id="amount"
-                validate={validateAmount}
-                placeholder="Amount"
               ></Field>
-              {errors.amount && touched.amount && (
-                <p className="form__tip">{errors.amount}</p>
-              )}
+              <div className="form__min-max-value">
+                <p className="form__amount-value">15 000</p>
+                <p className="form__amount-value">600 000</p>
+              </div>
+            </div>
+            <hr className="amount__hr" />
+            <div className="amount__value-block">
+              <p className="amount__heading">You have chosen the amount</p>
+              <p className="amount__value">
+                {amountValue.split(/(?=(?:...)*$)/).join(" ")} ₽
+              </p>
+              <hr className="amount__value-hr" />
             </div>
           </div>
 
