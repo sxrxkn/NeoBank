@@ -160,6 +160,18 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
 }
 
+.form__step-container {
+    display: flex;
+}
+
+.form__step {
+    color: black;
+    font-weight: 500;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
 @media (max-width: 640px) {
     .form__flex-container {
         justify-content: center;
@@ -174,7 +186,7 @@
     }
 }
 
-@media (max-width: 552px) {
+@media (max-width: 780px) {
     .amount__value-block {
         display: none;   
     }
@@ -182,7 +194,9 @@
     .amount__hr {
         display: none;
     }
-    
+}
+
+@media (max-width: 552px) {
     .form__amount-field {
         width: 100%;
     }

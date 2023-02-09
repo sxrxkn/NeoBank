@@ -54,3 +54,13 @@
 .sign__checkbox {
     padding-right: 80px;
 }
+
+.sign__checkbox label {
+    padding-left: 10px;
+}
+
+@media (max-width: 410px) {
+    .sign__flex {
+        gap: 0;
+    }
+}

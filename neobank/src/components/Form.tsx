@@ -84,7 +84,10 @@ function FormContent() {
     >
       {({ errors, touched }) => (
         <Form className="form">
-          <h2 className="form__heading">Customize your card</h2>
+          <div className="form__step-container">
+            <h2 className="form__heading">Customize your card</h2>
+            <p className="form__step">Step 1 of 5</p>
+          </div>
           <div className="form__flex-amount-container">
             <div className="form__range-container form__amount">
               <label

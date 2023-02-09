@@ -24,11 +24,29 @@
 }
 
 .ascending {
-    background-image: none;
     background: url(../assets/imgs/table-arrow-up.svg) no-repeat 50% 45%;
 }
 
 .descending {
-    background-image: none;
     background: url(../assets/imgs/table-arrow-down.svg) no-repeat 50% 45%;
+}
+
+@media (max-width: 1300px) {
+    .ascending {
+        background: url(../assets/imgs/table-arrow-up.svg) no-repeat 0 100%;
+    }
+    
+    .descending {
+        background: url(../assets/imgs/table-arrow-down.svg) no-repeat 0 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .modal__content {
+        width: 80%;
+    }
+
+    .table {
+        font-size: 8px;
+    }
 }

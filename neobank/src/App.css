@@ -28,10 +28,6 @@
     font-size: 16px;
 }
 
-.modal-view__buttons-container {
-    display: flex;
-    justify-content: space-between;
-}
 
 .modal-view__deny {
     background: rgba(217, 55, 55, 0.8);

@@ -55,7 +55,10 @@ function PaymentSchedule() {
           />
         )) || (
           <section className="form">
-            <h2 className="form__heading">Payment Schedule</h2>
+            <div className="sign__flex">
+              <h2 className="sign__heading">Payment Schedule</h2>
+              <p className="sign__step-info">Step 3 of 5</p>
+            </div>
             <Table></Table>
             <div className="confirm confirm-container">
               <button
@@ -67,33 +70,35 @@ function PaymentSchedule() {
                 Deny
               </button>
               <div className="confirm-container">
-                <input
-                  name="checkbox"
-                  id="checkbox"
-                  type="checkbox"
-                  onChange={() => {
-                    setAgree(!isAgree);
-                  }}
-                />
-                <label className="confrim__label" htmlFor="checkbox">
-                  I agree with the payment schedule
-                </label>
-                <button
-                  disabled={!isAgree}
-                  onClick={() =>
-                    trackPromise(
-                      postTableApply(applicationId).then(() => {
-                        setPosted(true);
-                        getStatus(+applicationId!).then((data) => {
-                          dispatch(updateStatus(data.data.status));
-                        });
-                      })
-                    )
-                  }
-                  className="button"
-                >
-                  Send
-                </button>
+                <div className="confirm__send-container">
+                  <input
+                    name="checkbox"
+                    id="checkbox"
+                    type="checkbox"
+                    onChange={() => {
+                      setAgree(!isAgree);
+                    }}
+                  />
+                  <label className="confrim__label" htmlFor="checkbox">
+                    I agree with the payment schedule
+                  </label>
+                  <button
+                    disabled={!isAgree}
+                    onClick={() =>
+                      trackPromise(
+                        postTableApply(applicationId).then(() => {
+                          setPosted(true);
+                          getStatus(+applicationId!).then((data) => {
+                            dispatch(updateStatus(data.data.status));
+                          });
+                        })
+                      )
+                    }
+                    className="button"
+                  >
+                    Send
+                  </button>
+                </div>
               </div>
             </div>
           </section>

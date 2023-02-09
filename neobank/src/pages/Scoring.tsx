@@ -118,7 +118,6 @@ function Scoring() {
                       setPosted(true);
                       getStatus(+applicationId!).then((data) => {
                         dispatch(updateStatus(data.data.status));
-                        console.log(data.data.status);
                       });
                     })
                 );
@@ -126,9 +125,12 @@ function Scoring() {
             >
               {({ errors, touched }) => (
                 <Form className="form">
-                  <h2 className="form__heading">
-                    Continuation of the application
-                  </h2>
+                  <div className="sign__flex">
+                    <h2 className="sign__heading">
+                      Continuation of the application
+                    </h2>
+                    <p className="sign__step-info">Step 2 of 5</p>
+                  </div>
 
                   <div className="form__flex-container">
                     <div className="form__scoring-input">
