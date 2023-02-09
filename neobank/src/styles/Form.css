@@ -86,3 +86,18 @@
     font-size: 16px;
     color: #FF5631;
 }
+
+
+@media (max-width: 640px) {
+    .form__flex-container {
+        justify-content: center;
+    }
+
+    .form__submit-button {
+        justify-content: center;
+    } 
+
+    .form__field {
+        width: 200px;
+    }
+}

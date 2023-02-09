@@ -12,7 +12,7 @@ import Table from "../components/Table";
 import { updateInfo, updateStatus } from "../store/reducers/LoanOffersReducer";
 import { useAppDispatch } from "../store/store";
 
-import { postDeny, postTableApply } from "../utils/api";
+import { getStatus, postDeny, postTableApply } from "../utils/api";
 
 import "../styles/PaymentSchedule.css";
 
@@ -84,6 +84,9 @@ function PaymentSchedule() {
                     trackPromise(
                       postTableApply(applicationId).then(() => {
                         setPosted(true);
+                        getStatus(+applicationId!).then((data) => {
+                          dispatch(updateStatus(data.data.status));
+                        });
                       })
                     )
                   }

@@ -1,7 +1,9 @@
 .info-card {
+    padding-top: 40px;
+    padding-bottom: 20px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 28px;
-    height: 236px;
+    height: auto;
     padding-left: 32px;
     padding-right: 40px;
     width: 30%;
@@ -19,11 +21,9 @@
 
 .about-card_correct-width > .info-card:nth-last-of-type(-n+2) {
     width: 48%;
-    background-color: aquamarine;
 }
 
 .about-card__icon {
-    padding-top: 40px;
     width: 40px;
     height: auto;
 }
@@ -55,4 +55,33 @@ font-size: 36px;
 
 .about-card_height {
     height: 160px;
+}
+
+@media (max-width: 1300px) {
+    .about-card_correct-width > .info-card:nth-last-of-type(-n+2) {
+        width: 46%;
+    }
+}
+
+@media (max-width: 920px) {
+    .info-card {
+        width: 46%;
+    }
+
+    .about-card_correct-width > .info-card:nth-last-of-type(-n+1) {
+        width: 100%;
+    }
+}
+
+@media (max-width: 640px) {
+    .info-card {
+        width: 100%;
+    }
+    .about-card_correct-width > .info-card:nth-last-of-type(-n+2) {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "./Button";
@@ -8,20 +8,17 @@ import { HeaderProps } from "../models";
 import "../styles/Header.css";
 
 function Header({ location }: HeaderProps) {
-  const burgerMenu = document.querySelector(".burger-menu__field");
-  const popup = document.querySelector(".popup");
+  const [isActive, setActive] = useState<boolean>();
   const body = document.body;
 
   const hambHandler = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    popup!.classList.toggle("open");
-    burgerMenu!.classList.toggle("active");
+    setActive(!isActive);
     body.classList.toggle("noscroll");
   };
 
   const closeOnClick = () => {
-    popup!.classList.remove("open");
-    burgerMenu!.classList.remove("active");
+    setActive(false);
     body.classList.remove("noscroll");
   };
 
@@ -52,15 +49,23 @@ function Header({ location }: HeaderProps) {
       </nav>
       <Button to="#" content="Online Bank" buttonClass="header__button" />
       <div className="burger-menu">
-        <div className="burger-menu__field" onClick={hambHandler}>
+        <div
+          className={`burger-menu__field ${isActive ? "active" : ""}`}
+          onClick={hambHandler}
+        >
           <span className="bar"></span>
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
       </div>
-      <div className="popup">
+      <div className={`popup ${isActive ? "open" : ""}`}>
         <ul className="navigation__list">
-          <li onClick={closeOnClick}>
+          <li
+            onClick={closeOnClick}
+            className={`${
+              location === "/loan" ? "navigation_active-link" : ""
+            }`}
+          >
             <Link to="/loan">Credit card</Link>
           </li>
           <li onClick={closeOnClick}>

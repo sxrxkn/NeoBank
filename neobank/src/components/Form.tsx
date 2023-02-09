@@ -85,29 +85,31 @@ function FormContent() {
       {({ errors, touched }) => (
         <Form className="form">
           <h2 className="form__heading">Customize your card</h2>
-          <div className="form__range-container form__amount">
-            <label className="form__label" htmlFor="amount">
-              Select amount <sup className="required">*</sup>
-            </label>
-            <Field
-              className={`form__field  ${
-                errors.amount && touched.amount
-                  ? "form__invalid-field"
-                  : touched.amount
-                  ? "form__valid-field"
-                  : ""
-              }`}
-              type="number"
-              name="amount"
-              min="15000"
-              max="600000"
-              id="amount"
-              validate={validateAmount}
-              placeholder="Amount"
-            ></Field>
-            {errors.amount && touched.amount && (
-              <p className="form__tip">{errors.amount}</p>
-            )}
+          <div className="form__flex-container">
+            <div className="form__range-container form__amount">
+              <label className="form__label" htmlFor="amount">
+                Select amount <sup className="required">*</sup>
+              </label>
+              <Field
+                className={`form__field  ${
+                  errors.amount && touched.amount
+                    ? "form__invalid-field"
+                    : touched.amount
+                    ? "form__valid-field"
+                    : ""
+                }`}
+                type="number"
+                name="amount"
+                min="15000"
+                max="600000"
+                id="amount"
+                validate={validateAmount}
+                placeholder="Amount"
+              ></Field>
+              {errors.amount && touched.amount && (
+                <p className="form__tip">{errors.amount}</p>
+              )}
+            </div>
           </div>
 
           <h3 className="form__extra-heading">Contact Information</h3>

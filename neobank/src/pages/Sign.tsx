@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
-import { postDocumentApply } from "../utils/api";
+import { getStatus, postDocumentApply } from "../utils/api";
 import { trackPromise } from "react-promise-tracker";
 
 import Footer from "../components/Footer";
@@ -11,11 +11,15 @@ import StepSuccesfulFinished from "../components/StepSuccesfulFinished";
 import fileIcon from "../assets/imgs/pngFile.svg";
 
 import "../styles/Sign.css";
+import { updateStatus } from "../store/reducers/LoanOffersReducer";
+import { useAppDispatch } from "../store/store";
 
 function Sign() {
   const [isAgree, setAgree] = useState(false);
   const [isPosted, setPosted] = useState(false);
   const { applicationId } = useParams();
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const localStoragePostedInfo = localStorage.getItem("isSigned");
@@ -90,6 +94,9 @@ function Sign() {
                   trackPromise(
                     postDocumentApply(applicationId).then(() => {
                       setPosted(true);
+                      getStatus(+applicationId!).then((data) => {
+                        dispatch(updateStatus(data.data.status));
+                      });
                     })
                   );
                 }}
