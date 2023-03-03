@@ -1,3 +1,7 @@
+import { PreloadedState } from "@reduxjs/toolkit";
+import { RenderOptions } from "@testing-library/react";
+import { AppStore, RootState } from "./store/store";
+
 export interface AccordionProps {
   title: string;
   children: React.ReactNode;
@@ -122,4 +126,9 @@ export interface StepSuccesfulFinishedProps {
 export interface SortConfig {
   direction: string;
   key: string;
+}
+
+export interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
+  preloadedState?: PreloadedState<RootState>;
+  store?: AppStore;
 }
