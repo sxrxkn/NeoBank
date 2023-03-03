@@ -13,7 +13,7 @@ import { updateStatus } from "../store/reducers/LoanOffersReducer";
 import "../styles/CardLoanOffer.css";
 import "../styles/Button.css";
 
-function Button({
+function CardLoanOffer({
   id,
   payment,
   requestedAmount,
@@ -88,4 +88,4 @@ function Button({
   );
 }
 
-export default Button;
+export default CardLoanOffer;

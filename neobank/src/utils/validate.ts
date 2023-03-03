@@ -10,14 +10,6 @@ export const validateEmail = (value: string) => {
   }
 };
 
-export const validateAmount = (value: number) => {
-  if (!value) {
-    return "Required field";
-  } else if (value < 15000 || value > 600000) {
-    return "The amount should be from 15000 to 600000";
-  }
-};
-
 export const validateRequiredFields = (value: string) => {
   if (!value) {
     return "Required field";

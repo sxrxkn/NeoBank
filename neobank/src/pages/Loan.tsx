@@ -221,10 +221,12 @@ function Loan() {
                 <ul className="conditions">
                   {conditions.map(({ content, annotation }) => (
                     <li className="conditions__list-item" key={content}>
-                      <div className="conditions__content">
-                        <span>{content}</span>
+                      <div className="conditions__flex-container">
+                        <div className="conditions__content">
+                          <span>{content}</span>
+                        </div>
+                        <p className="conditions__annotation">{annotation}</p>
                       </div>
-                      <p className="conditions__annotation">{annotation}</p>
                       <hr className="conditions_divider" />
                     </li>
                   ))}
@@ -241,7 +243,7 @@ function Loan() {
                         index % 2 === 0
                           ? "#EAECEE"
                           : "rgba(136, 179, 184, 0.6)",
-                      height: "160px",
+                      height: "auto",
                     }}
                   >
                     <p className="about-card__info">{content}</p>

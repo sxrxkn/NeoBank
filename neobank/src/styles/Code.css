@@ -12,6 +12,7 @@
     font-weight: 700;
     font-size: 30px;
     color: #1C1C1E;
+    text-align: center;
 }
 
 .code__input {
@@ -68,4 +69,17 @@
     font-size: 16px;
     padding-top: 16px; 
     text-align: center;
+}
+
+@media (max-width: 332px) {
+    .code__input {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 266px) {
+    .code__input {
+        width: 30px;
+        height: 30px;
+    }
 }

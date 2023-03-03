@@ -17,6 +17,9 @@ import StepSuccesfulFinished from "../components/StepSuccesfulFinished";
 
 import "../styles/Scoring.css";
 import "../styles/Form.css";
+import { getStatus } from "../utils/api";
+import { updateStatus } from "../store/reducers/LoanOffersReducer";
+import { useAppDispatch } from "../store/store";
 
 function Scoring() {
   const [isPosted, setPosted] = useState(false);
@@ -26,6 +29,8 @@ function Scoring() {
   const isPostedPrescoring = JSON.parse(
     localStorage.getItem("isPostedPrescoring") || "{}"
   );
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const localStoragePostedInfo = localStorage.getItem("isPosted");
@@ -111,18 +116,24 @@ function Scoring() {
                     .then(() => {
                       localStorage.setItem("isPosted", "true");
                       setPosted(true);
+                      getStatus(+applicationId!).then((data) => {
+                        dispatch(updateStatus(data.data.status));
+                      });
                     })
                 );
               }}
             >
               {({ errors, touched }) => (
                 <Form className="form">
-                  <h2 className="form__heading">
-                    Continuation of the application
-                  </h2>
+                  <div className="sign__flex">
+                    <h2 className="sign__heading">
+                      Continuation of the application
+                    </h2>
+                    <p className="sign__step-info">Step 2 of 5</p>
+                  </div>
 
                   <div className="form__flex-container">
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="gender">
                         What's your gender <sup className="required">*</sup>
                       </label>
@@ -150,7 +161,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="maritalStatus">
                         Your marital status <sup className="required">*</sup>
                       </label>
@@ -180,7 +191,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="dependentAmount">
                         Your number of dependents{" "}
                         <sup className="required">*</sup>
@@ -211,7 +222,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label
                         className="form__label"
                         htmlFor="passportIssueDate"
@@ -241,7 +252,7 @@ function Scoring() {
                         )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label
                         className="form__label"
                         htmlFor="passportIssueBranch"
@@ -275,7 +286,7 @@ function Scoring() {
                   <h3 className="form__extra-heading">Employment</h3>
 
                   <div className="form__flex-container">
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="employmentStatus">
                         Your employment status <sup className="required">*</sup>
                       </label>
@@ -305,7 +316,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="employerINN">
                         Your employer INN <sup className="required">*</sup>
                       </label>
@@ -328,7 +339,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="salary">
                         Your salary <sup className="required">*</sup>
                       </label>
@@ -351,7 +362,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label className="form__label" htmlFor="position">
                         Your position <sup className="required">*</sup>
                       </label>
@@ -382,7 +393,7 @@ function Scoring() {
                       )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label
                         className="form__label"
                         htmlFor="workExperienceTotal"
@@ -422,7 +433,7 @@ function Scoring() {
                         )}
                     </div>
 
-                    <div>
+                    <div className="form__scoring-input">
                       <label
                         className="form__label"
                         htmlFor="workExperienceCurrent"

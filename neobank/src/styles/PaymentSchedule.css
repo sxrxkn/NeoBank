@@ -17,3 +17,24 @@
     PADDING-LEFT: 14px;
     padding-right: 40px;
 }
+
+.confirm__send-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+@media (max-width: 500px) {
+    .confirm-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .confirm__deny {
+        align-self: flex-start;
+    }
+
+}

@@ -2,12 +2,15 @@
     display: flex;
     align-items: center;
     gap: 105px;
-    height: 390px;
+    height: auto;
     background: linear-gradient(180.8deg, rgba(203, 213, 224, 0.624) 34.33%, rgba(254, 235, 200, 0.56) 64.27%);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 28.8px;
     padding-left: 32px;
+    padding-right: 32px;
     margin-top: 26px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .card-description__heading {
@@ -46,15 +49,22 @@
     color: #3D3D3D;
 }
 
+.card-description__card-image {
+    border-radius: 20px;
+    height: auto;
+    transform: rotate(10deg);
+}
+
 .card-description__card-image img {
     border-radius: 20px;
-    width: 380px;
+    width: 340px;
     height: auto;
     transform: rotate(10deg);
 }
 
 .card-description__button {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .tabs {
@@ -97,7 +107,9 @@
 .get-card-tutorial__list {
     display: flex;
     gap: 106px;
+    justify-content: center;
     text-align: center;
+    width: 100%;
 }
 
 .get-card-tutorial__item {
@@ -138,6 +150,12 @@
     display: none;
 }
 
+.conditions__flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .conditions__list-item {
     font-weight: 500;
     font-size: 16px;
@@ -146,15 +164,15 @@
 }
 
 .conditions__content {
-    width: 36%;
+    width: 40%;
     display: inline-block;
 }
 
 .conditions__annotation {
-    
+    width: 60%;
     font-weight: 500;
+    padding-left: 20px;
     font-size: 16px;
-    padding-left: 150px;
     color: #434343;
     display: inline-block;
 }
@@ -196,4 +214,89 @@
     font-size: 16px;
     color: #4F5665;
     padding-bottom: 34px;
+}
+
+@media (max-width: 1300px) {
+    .card-description {
+        gap: 35px;
+    }
+    .get-card-tutorial__list {
+        gap: 17px;
+    }
+    .get-card-tutorial__list  li{
+        width: 280px;
+    }
+    .get-card-tutorial__item-number {
+        width: 60px;
+    }
+    .card-description__card-image img{
+        width: 250px;
+    }
+    .offers {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 920px) {
+    .card-description__button {
+        margin: 0 auto;
+    }
+
+    .card-description__card-image {
+        display: none;
+    }
+
+    .get-card-tutorial__list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .get-card-tutorial__item {
+        gap: 6px;
+    }
+
+    .get-card-tutorial__item-number {
+        width: 54px;
+    }
+
+    .card-description {
+        justify-content: center;
+    }
+
+    .offers {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .card-description__text {
+        width: 100%;
+    }
+
+    .card-description__heading {
+        font-size: 35px;
+    }
+
+    .card-description__list {
+        gap: 20px;
+    }
+
+    .card-description__list li {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .card-description__list {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tabs__navigation {
+        gap: 5px;
+        font-size: 13px;
+    }
 }
